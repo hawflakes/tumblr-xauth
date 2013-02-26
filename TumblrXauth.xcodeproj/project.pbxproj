@@ -24,10 +24,12 @@
 /* Begin PBXBuildFile section */
 		720C187916DD2255000C285F /* NSString+TXAURLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187716DD2255000C285F /* NSString+TXAURLEncoding.h */; };
 		720C187A16DD2255000C285F /* NSString+TXAURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C187816DD2255000C285F /* NSString+TXAURLEncoding.m */; };
-		720C187D16DD5BFD000C285F /* TXAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187B16DD5BFD000C285F /* TXAClient.h */; };
+		720C187D16DD5BFD000C285F /* TXAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187B16DD5BFD000C285F /* TXAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		720C187E16DD5BFD000C285F /* TXAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C187C16DD5BFD000C285F /* TXAClient.m */; };
-		720C188116DD632A000C285F /* TXARequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187F16DD632A000C285F /* TXARequest.h */; };
+		720C188116DD632A000C285F /* TXARequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187F16DD632A000C285F /* TXARequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		720C188216DD632A000C285F /* TXARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188016DD632A000C285F /* TXARequest.m */; };
+		720C188516DD74BD000C285F /* TXAParam.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C188316DD74BD000C285F /* TXAParam.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		720C188616DD74BD000C285F /* TXAParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188416DD74BD000C285F /* TXAParam.m */; };
 		72DD246016DC6DAF00150A75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DD245F16DC6DAF00150A75 /* Foundation.framework */; };
 		72DD247016DC73F800150A75 /* TumblrXauth.h in Headers */ = {isa = PBXBuildFile; fileRef = 72DD246416DC6DAF00150A75 /* TumblrXauth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -49,6 +51,8 @@
 		720C187C16DD5BFD000C285F /* TXAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAClient.m; sourceTree = "<group>"; };
 		720C187F16DD632A000C285F /* TXARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXARequest.h; sourceTree = "<group>"; };
 		720C188016DD632A000C285F /* TXARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXARequest.m; sourceTree = "<group>"; };
+		720C188316DD74BD000C285F /* TXAParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXAParam.h; sourceTree = "<group>"; };
+		720C188416DD74BD000C285F /* TXAParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAParam.m; sourceTree = "<group>"; };
 		72DD245C16DC6DAF00150A75 /* libTumblrXauth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTumblrXauth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DD245F16DC6DAF00150A75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72DD246416DC6DAF00150A75 /* TumblrXauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TumblrXauth.h; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				720C187C16DD5BFD000C285F /* TXAClient.m */,
 				720C187F16DD632A000C285F /* TXARequest.h */,
 				720C188016DD632A000C285F /* TXARequest.m */,
+				720C188316DD74BD000C285F /* TXAParam.h */,
+				720C188416DD74BD000C285F /* TXAParam.m */,
 			);
 			path = TumblrXauth;
 			sourceTree = "<group>";
@@ -124,6 +130,7 @@
 				720C187916DD2255000C285F /* NSString+TXAURLEncoding.h in Headers */,
 				720C187D16DD5BFD000C285F /* TXAClient.h in Headers */,
 				720C188116DD632A000C285F /* TXARequest.h in Headers */,
+				720C188516DD74BD000C285F /* TXAParam.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +218,7 @@
 				720C187A16DD2255000C285F /* NSString+TXAURLEncoding.m in Sources */,
 				720C187E16DD5BFD000C285F /* TXAClient.m in Sources */,
 				720C188216DD632A000C285F /* TXARequest.m in Sources */,
+				720C188616DD74BD000C285F /* TXAParam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
