@@ -14,4 +14,9 @@
       NULL, (__bridge CFStringRef)self, CFSTR(""));
 }
 
+- (NSString *)TXAURLEncode {
+  return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
+      NULL, (__bridge CFStringRef)self, NULL, NULL, kCFStringEncodingUTF8);
+}
+
 @end
