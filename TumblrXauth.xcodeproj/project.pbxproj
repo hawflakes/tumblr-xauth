@@ -6,12 +6,42 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		72DD247116DC74C500150A75 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 72DD247216DC74C500150A75 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				72DD247716DC750E00150A75 /* ShellScript */,
+			);
+			dependencies = (
+				72DD247616DC74D100150A75 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		720C187916DD2255000C285F /* NSString+TXAURLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C187716DD2255000C285F /* NSString+TXAURLEncoding.h */; };
+		720C187A16DD2255000C285F /* NSString+TXAURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C187816DD2255000C285F /* NSString+TXAURLEncoding.m */; };
 		72DD246016DC6DAF00150A75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DD245F16DC6DAF00150A75 /* Foundation.framework */; };
 		72DD247016DC73F800150A75 /* TumblrXauth.h in Headers */ = {isa = PBXBuildFile; fileRef = 72DD246416DC6DAF00150A75 /* TumblrXauth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		72DD247516DC74D100150A75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72DD245416DC6DAF00150A75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72DD245B16DC6DAF00150A75;
+			remoteInfo = TumblrXauth;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		720C187316DD1CEB000C285F /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
+		720C187716DD2255000C285F /* NSString+TXAURLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TXAURLEncoding.h"; sourceTree = "<group>"; };
+		720C187816DD2255000C285F /* NSString+TXAURLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TXAURLEncoding.m"; sourceTree = "<group>"; };
 		72DD245C16DC6DAF00150A75 /* libTumblrXauth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTumblrXauth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DD245F16DC6DAF00150A75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72DD246416DC6DAF00150A75 /* TumblrXauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TumblrXauth.h; sourceTree = "<group>"; };
@@ -29,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		720C187616DD222A000C285F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				720C187716DD2255000C285F /* NSString+TXAURLEncoding.h */,
+				720C187816DD2255000C285F /* NSString+TXAURLEncoding.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		72DD245316DC6DAF00150A75 = {
 			isa = PBXGroup;
 			children = (
@@ -49,6 +88,7 @@
 		72DD245E16DC6DAF00150A75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				720C187316DD1CEB000C285F /* libcommonCrypto.dylib */,
 				72DD245F16DC6DAF00150A75 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -57,6 +97,7 @@
 		72DD246116DC6DAF00150A75 /* TumblrXauth */ = {
 			isa = PBXGroup;
 			children = (
+				720C187616DD222A000C285F /* Categories */,
 				72DD246416DC6DAF00150A75 /* TumblrXauth.h */,
 			);
 			path = TumblrXauth;
@@ -70,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72DD247016DC73F800150A75 /* TumblrXauth.h in Headers */,
+				720C187916DD2255000C285F /* NSString+TXAURLEncoding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +157,7 @@
 			projectRoot = "";
 			targets = (
 				72DD245B16DC6DAF00150A75 /* TumblrXauth */,
+				72DD247116DC74C500150A75 /* Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -133,6 +176,19 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\n/bin/mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
 		};
+		72DD247716DC750E00150A75 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]; then\n    exit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\n    SF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\n    SF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]; then\n    SF_OTHER_PLATFORM=iphonesimulator\nelse\n    SF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]; then\n    SF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,10 +196,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				720C187A16DD2255000C285F /* NSString+TXAURLEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72DD247616DC74D100150A75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72DD245B16DC6DAF00150A75 /* TumblrXauth */;
+			targetProxy = 72DD247516DC74D100150A75 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		72DD246816DC6DAF00150A75 /* Debug */ = {
@@ -209,6 +274,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/TumblrXauth.dst;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -219,9 +288,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/TumblrXauth.dst;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		72DD247316DC74C500150A75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		72DD247416DC74C500150A75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -242,6 +329,15 @@
 			buildConfigurations = (
 				72DD246B16DC6DAF00150A75 /* Debug */,
 				72DD246C16DC6DAF00150A75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72DD247216DC74C500150A75 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72DD247316DC74C500150A75 /* Debug */,
+				72DD247416DC74C500150A75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

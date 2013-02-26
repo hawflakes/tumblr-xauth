@@ -1,1 +1,1 @@
-#import <Foundation/Foundation.h>
+#import "NSString+TXAURLEncoding.h"
