@@ -12,6 +12,10 @@ static NSString *const kTumblrAccessTokenUrl = @"https://www.tumblr.com/oauth/ac
 
 @implementation TXAClient
 
+- (id)init {
+  return [self initWithKey:nil secret:nil];
+}
+
 - (id)initWithKey:(NSString *)key secret:(NSString *)secret {
   self = [super init];
   if (self) {
