@@ -7,6 +7,8 @@
   NSString *_secret;
   NSString *_accessToken;
   NSString *_tokenSecret;
+  NSString *_nonce;
+  NSString *_timestamp;
 }
 + (NSString *)generateNonce;
 + (NSString *)generateTimestamp;
@@ -25,6 +27,8 @@
     _secret = [secret copy];
     _accessToken = [accessToken copy];
     _tokenSecret = [tokenSecret copy];
+    _nonce = [[self class] generateNonce];
+    _timestamp = [[self class] generateTimestamp];
   }
   return self;
 }
