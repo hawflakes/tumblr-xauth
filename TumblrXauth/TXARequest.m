@@ -112,6 +112,8 @@
   _nonce = [self generateNonce];
   _timestamp = [self generateTimestamp];
 
+  [self regenerateOauthParams];
+
   NSString *signatureBaseString = [self generateSignatureBaseString];
   NSString *signatureSecret = [self generateSignatureSecret];
   NSData *data = [signatureBaseString dataUsingEncoding:NSUTF8StringEncoding];
@@ -199,7 +201,6 @@
       [params addObject:param];
     }
   }
-  [params addObjectsFromArray:_oauthParams];
   [params addObjectsFromArray:_xauthParams];
   [params addObjectsFromArray:_userParams];
   [params sortUsingSelector:@selector(compareForSignatureBaseString:)];
