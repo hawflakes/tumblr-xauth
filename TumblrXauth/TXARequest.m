@@ -18,12 +18,19 @@
   NSMutableArray *_xauthParams;
   NSMutableArray *_userParams;
 }
+
 - (void)regenerateOauthParams;
+
 - (NSString *)generateAuthorizationHeaderValue;
 - (NSString *)generateNonce;
+- (NSString *)generateSignatureBaseString;
+- (NSString *)generateSignatureBaseStringParamSection;
+- (NSString *)generateSignatureBaseStringURLSection;
 - (NSString *)generateTimestamp;
 @end
 
+// TXARequest is designed for compliance with OAuth 1.0a as documented at
+// http://oauth.net/core/1.0a
 @implementation TXARequest
 
 #pragma mark - Initializers
@@ -137,6 +144,56 @@
   CFStringRef uuidString = CFUUIDCreateString(NULL, uuid);
   CFRelease(uuid);
   return CFBridgingRelease(uuidString);
+}
+
+- (NSString *)generateSignatureBaseString {
+  NSString *methodSection = [self HTTPMethod];
+  NSString *urlSection = [self generateSignatureBaseStringURLSection];
+  NSString *paramSection = [self generateSignatureBaseStringParamSection];
+  NSArray *sections = @[
+    [methodSection TXAParameterEncode],
+    [urlSection TXAParameterEncode],
+    [paramSection TXAParameterEncode]
+  ];
+  return [sections componentsJoinedByString:@"&"];
+}
+
+- (NSString *)generateSignatureBaseStringParamSection {
+  NSMutableArray *params = [NSMutableArray array];
+  for (TXAParam *param in _oauthParams) {
+    if (![param.name isEqualToString:@"oauth_signature"] && ![param.name isEqualToString:@"realm"]) {
+      [params addObject:param];
+    }
+  }
+  [params addObjectsFromArray:_oauthParams];
+  [params addObjectsFromArray:_xauthParams];
+  [params addObjectsFromArray:_userParams];
+  [params sortUsingSelector:@selector(compareForSignatureBaseString:)];
+  NSMutableArray *encodedParams = [NSMutableArray arrayWithCapacity:[params count]];
+  for (TXAParam *param in params) {
+    [encodedParams addObject:[param formatForSignatureBaseString]];
+  }
+  return [encodedParams componentsJoinedByString:@"&"];
+}
+
+- (NSString *)generateSignatureBaseStringURLSection {
+  NSString *scheme = [[self URL] scheme];
+  NSString *host = [[self URL] host];
+  NSNumber *port = [[self URL] port];
+  NSString *path = [[self URL] path];
+  if (port && scheme &&
+      ((port.unsignedIntValue == 80 && [scheme isEqualToString:@"http"]) ||
+       (port.unsignedIntValue == 443 && [scheme isEqualToString:@"https"]))) {
+    port = nil;
+  }
+  if (!path) {
+    path = @"";
+  }
+  if (port) {
+    return [NSString stringWithFormat:@"%@://%@:%@%@", scheme, host, port, path];
+  } else {
+    return [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
+  }
 }
 
 - (NSString *)generateTimestamp {

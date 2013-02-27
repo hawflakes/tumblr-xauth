@@ -14,4 +14,6 @@
 - (NSString *)formatForSignatureBaseString;
 - (NSString *)formatForURL;
 
+- (NSComparisonResult)compareForSignatureBaseString:(TXAParam *)other;
+
 @end
