@@ -30,8 +30,8 @@
 		720C188216DD632A000C285F /* TXARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188016DD632A000C285F /* TXARequest.m */; };
 		720C188516DD74BD000C285F /* TXAParam.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C188316DD74BD000C285F /* TXAParam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		720C188616DD74BD000C285F /* TXAParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188416DD74BD000C285F /* TXAParam.m */; };
-		720C188A16DD8878000C285F /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C188816DD8878000C285F /* NSData+Base64.h */; };
-		720C188B16DD8878000C285F /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188916DD8878000C285F /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		720C188A16DD8878000C285F /* NSData+TXABase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C188816DD8878000C285F /* NSData+TXABase64.h */; };
+		720C188B16DD8878000C285F /* NSData+TXABase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188916DD8878000C285F /* NSData+TXABase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72DD246016DC6DAF00150A75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DD245F16DC6DAF00150A75 /* Foundation.framework */; };
 		72DD247016DC73F800150A75 /* TumblrXauth.h in Headers */ = {isa = PBXBuildFile; fileRef = 72DD246416DC6DAF00150A75 /* TumblrXauth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -55,8 +55,8 @@
 		720C188016DD632A000C285F /* TXARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXARequest.m; sourceTree = "<group>"; };
 		720C188316DD74BD000C285F /* TXAParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXAParam.h; sourceTree = "<group>"; };
 		720C188416DD74BD000C285F /* TXAParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAParam.m; sourceTree = "<group>"; };
-		720C188816DD8878000C285F /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		720C188916DD8878000C285F /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		720C188816DD8878000C285F /* NSData+TXABase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+TXABase64.h"; sourceTree = "<group>"; };
+		720C188916DD8878000C285F /* NSData+TXABase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+TXABase64.m"; sourceTree = "<group>"; };
 		72DD245C16DC6DAF00150A75 /* libTumblrXauth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTumblrXauth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DD245F16DC6DAF00150A75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72DD246416DC6DAF00150A75 /* TumblrXauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TumblrXauth.h; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 		720C188716DD885A000C285F /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				720C188816DD8878000C285F /* NSData+Base64.h */,
-				720C188916DD8878000C285F /* NSData+Base64.m */,
+				720C188816DD8878000C285F /* NSData+TXABase64.h */,
+				720C188916DD8878000C285F /* NSData+TXABase64.m */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -145,7 +145,7 @@
 				720C187D16DD5BFD000C285F /* TXAClient.h in Headers */,
 				720C188116DD632A000C285F /* TXARequest.h in Headers */,
 				720C188516DD74BD000C285F /* TXAParam.h in Headers */,
-				720C188A16DD8878000C285F /* NSData+Base64.h in Headers */,
+				720C188A16DD8878000C285F /* NSData+TXABase64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +234,7 @@
 				720C187E16DD5BFD000C285F /* TXAClient.m in Sources */,
 				720C188216DD632A000C285F /* TXARequest.m in Sources */,
 				720C188616DD74BD000C285F /* TXAParam.m in Sources */,
-				720C188B16DD8878000C285F /* NSData+Base64.m in Sources */,
+				720C188B16DD8878000C285F /* NSData+TXABase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

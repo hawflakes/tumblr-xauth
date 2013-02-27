@@ -23,7 +23,7 @@
 //
 //  Source altered for packaging in TumblrXauth framework.
 
-#import "NSData+Base64.h"
+#import "NSData+TXABase64.h"
 
 static void *NewBase64Decode(
                              const char *inputBuffer,

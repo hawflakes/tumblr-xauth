@@ -1,7 +1,9 @@
 #import "TXARequest.h"
 
+#import <CommonCrypto/CommonCrypto.h>
 #import <Foundation/Foundation.h>
 
+#import "NSData+TXABase64.h"
 #import "NSString+TXAURLEncoding.h"
 #import "TXAParam.h"
 
@@ -105,7 +107,15 @@
 - (void)sign {
   _nonce = [self generateNonce];
   _timestamp = [self generateTimestamp];
-  // TODO: fill in signature
+
+  NSString *signatureBaseString = [self generateSignatureBaseString];
+  NSString *signatureSecret = [self generateSignatureSecret];
+  NSData *data = [signatureBaseString dataUsingEncoding:NSUTF8StringEncoding];
+  NSData *key = [signatureSecret dataUsingEncoding:NSUTF8StringEncoding];
+  NSMutableData *mac = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
+  CCHmac(kCCHmacAlgSHA1, [key bytes], [key length], [data bytes], [data length], [mac mutableBytes]);
+  _signature = [mac TXABase64EncodedString];
+
   [self regenerateOauthParams];
 }
 
