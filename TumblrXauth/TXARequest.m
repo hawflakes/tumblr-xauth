@@ -26,6 +26,7 @@
 - (NSString *)generateSignatureBaseString;
 - (NSString *)generateSignatureBaseStringParamSection;
 - (NSString *)generateSignatureBaseStringURLSection;
+- (NSString *)generateSignatureSecret;
 - (NSString *)generateTimestamp;
 @end
 
@@ -194,6 +195,14 @@
   } else {
     return [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
   }
+}
+
+- (NSString *)generateSignatureSecret {
+  NSString *encodedSecret = [_secret TXAParameterEncode];
+  NSString *encodedTokenSecret = [_tokenSecret TXAParameterEncode];
+  encodedSecret = encodedSecret ? encodedSecret : @"";
+  encodedTokenSecret = encodedTokenSecret ? encodedTokenSecret : @"";
+  return [NSString stringWithFormat:@"%@&%@", encodedSecret, encodedTokenSecret];
 }
 
 - (NSString *)generateTimestamp {
