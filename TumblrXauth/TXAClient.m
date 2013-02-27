@@ -124,6 +124,7 @@ static NSString *const kConnInfoKeyResponse = @"response";
 - (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption completionCallback:(TXAClientCompletionCallback)completionCallback {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kTumblrPostTemplateUrl, name]];
   TXARequest *request = [[TXARequest alloc] initWithURL:url key:_key secret:_secret accessToken:_accessToken tokenSecret:_tokenSecret];
+  [request setHTTPMethod:@"POST"];
   [request addParam:@"type" value:@"photo"];
   if (caption) {
     [request addParam:@"caption" value:caption];
