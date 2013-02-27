@@ -108,7 +108,7 @@
   [_xauthParams addObject:[TXAParam paramWithName:@"x_auth_password" value:password]];
 }
 
-- (void)signAndSetUserParameters {
+- (void)sign {
   _nonce = [self generateNonce];
   _timestamp = [self generateTimestamp];
 
