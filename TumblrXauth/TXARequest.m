@@ -97,6 +97,10 @@
 
 #pragma mark - Public Methods
 
+- (void)addParam:(NSString *)name value:(NSString *)value {
+  [_userParams addObject:[TXAParam paramWithName:name value:value]];
+}
+
 - (void)addXauthParamsForUsername:(NSString *)username password:(NSString *)password {
   [_xauthParams removeAllObjects];
   [_xauthParams addObject:[TXAParam paramWithName:@"x_auth_mode" value:@"client_auth"]];

@@ -21,6 +21,7 @@
 - (id)initWithURL:(NSURL *)url key:(NSString *)key secret:(NSString *)secret;
 
 
+- (void)addParam:(NSString *)name value:(NSString *)value;
 - (void)addXauthParamsForUsername:(NSString *)username password:(NSString *)password;
 - (void)signAndSetUserParameters;
 
