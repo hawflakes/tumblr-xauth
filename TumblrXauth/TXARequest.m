@@ -104,7 +104,7 @@
   [_xauthParams addObject:[TXAParam paramWithName:@"x_auth_password" value:password]];
 }
 
-- (void)sign {
+- (void)signAndSetUserParameters {
   _nonce = [self generateNonce];
   _timestamp = [self generateTimestamp];
 
@@ -117,6 +117,22 @@
   _signature = [mac TXABase64EncodedString];
 
   [self regenerateOauthParams];
+
+  [self setValue:[self generateAuthorizationHeaderValue] forHTTPHeaderField:@"Authorization"];
+
+  NSMutableArray *params = [NSMutableArray arrayWithCapacity:[_userParams count]];
+  for (TXAParam *param in _userParams) {
+    [params addObject:[param formatForURL]];
+  }
+  NSString *urlEncodedUserParams = [params componentsJoinedByString:@"&"];
+  if ([[self HTTPMethod] isEqualToString:@"POST"]) {
+    [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [self setHTTPBody:[urlEncodedUserParams dataUsingEncoding:NSUTF8StringEncoding]];
+  } else if ([urlEncodedUserParams length] > 0) {
+    NSString *queryString = [NSString stringWithFormat:@"?%@", urlEncodedUserParams];
+    NSURL *url = [NSURL URLWithString:queryString relativeToURL:[self URL]];
+    [self setURL:url];
+  }
 }
 
 #pragma mark - Class Extension Methods
@@ -125,6 +141,9 @@
   [_oauthParams removeAllObjects];
   if (_key) {
     [_oauthParams addObject:[TXAParam paramWithName:@"oauth_consumer_key" value:_key]];
+  }
+  if (_accessToken) {
+    [_oauthParams addObject:[TXAParam paramWithName:@"oauth_token" value:_accessToken]];
   }
   [_oauthParams addObject:[TXAParam paramWithName:@"oauth_signature_method" value:@"HMAC-SHA1"]];
   if (_signature) {

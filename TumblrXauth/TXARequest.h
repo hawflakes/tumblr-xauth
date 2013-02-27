@@ -22,6 +22,6 @@
 
 
 - (void)addXauthParamsForUsername:(NSString *)username password:(NSString *)password;
-- (void)sign;
+- (void)signAndSetUserParameters;
 
 @end
