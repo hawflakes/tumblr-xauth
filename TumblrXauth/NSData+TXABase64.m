@@ -312,7 +312,10 @@ char *NewBase64Encode(
 	size_t outputLength;
 	char *outputBuffer =
 		NewBase64Encode([self bytes], [self length], true, &outputLength);
-	
+	if (!outputBuffer) {
+		return nil;
+	}
+
 	NSString *result =
 		[[[NSString alloc]
 			initWithBytes:outputBuffer
