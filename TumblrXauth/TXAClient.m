@@ -5,6 +5,8 @@
 #import "TXARequest.h"
 
 static NSString *const kTumblrAccessTokenUrl = @"https://www.tumblr.com/oauth/access_token";
+static NSString *const kTumblrUserInfoUrl = @"https://api.tumblr.com/v2/user/info";
+static NSString *const kTumblrPostTemplateUrl = @"https://api.tumblr.com/v2/blog/%@.tumblr.com/post";
 
 static NSString *const kConnInfoKeyCallback = @"callback";
 static NSString *const kConnInfoKeyData = @"data";
@@ -20,6 +22,7 @@ static NSString *const kConnInfoKeyResponse = @"response";
   CFMutableDictionaryRef _connectionInfoMap;
 }
 - (NSMutableDictionary *)connectionInfoForConnection:(NSURLConnection *)connection;
+- (void)launchRequest:(TXARequest *)request withCallback:(TXAClientCompletionCallback)callback;
 @end
 
 @implementation TXAClient
@@ -67,9 +70,7 @@ static NSString *const kConnInfoKeyResponse = @"response";
   [request addXauthParamsForUsername:username password:password];
   [request setHTTPMethod:@"POST"];
   [request sign];
-  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-  NSMutableDictionary *connectionInfo = [NSMutableDictionary dictionary];
-  TXAClientCompletionCallback callback = ^void (NSURLResponse *response, NSData *data, NSError *error) {
+  TXAClientCompletionCallback callback = ^(NSURLResponse *response, NSData *data, NSError *error) {
     if (error || ![response isKindOfClass:[NSHTTPURLResponse class]]) {
       completionCallback(NO);
       return;
@@ -110,11 +111,29 @@ static NSString *const kConnInfoKeyResponse = @"response";
 
     completionCallback(accessToken && tokenSecret);
   };
-  [connectionInfo setValue:callback forKey:kConnInfoKeyCallback];
-  [connectionInfo setValue:[NSMutableData data] forKey:kConnInfoKeyData];
-  [connectionInfo setValue:request forKey:kConnInfoKeyRequest];
-  CFDictionaryAddValue(_connectionInfoMap, (__bridge void *)connection, (__bridge void *)connectionInfo);
-  [connection start];
+  [self launchRequest:request withCallback:callback];
+}
+
+- (void)retrieveUserInfoWithCompletionCallback:(TXAClientCompletionCallback)completionCallback {
+  NSURL *url = [NSURL URLWithString:kTumblrUserInfoUrl];
+  TXARequest *request = [[TXARequest alloc] initWithURL:url key:_key secret:_secret accessToken:_accessToken tokenSecret:_tokenSecret];
+  [request sign];
+  [self launchRequest:request withCallback:completionCallback];
+}
+
+- (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption completionCallback:(TXAClientCompletionCallback)completionCallback {
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kTumblrPostTemplateUrl, name]];
+  TXARequest *request = [[TXARequest alloc] initWithURL:url key:_key secret:_secret accessToken:_accessToken tokenSecret:_tokenSecret];
+  [request addParam:@"type" value:@"photo"];
+  if (caption) {
+    [request addParam:@"caption" value:caption];
+  }
+  if (link) {
+    [request addParam:@"link" value:link];
+  }
+  [request addParam:@"source" value:sourceUrl];
+  [request sign];
+  [self launchRequest:request withCallback:completionCallback];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -156,6 +175,16 @@ static NSString *const kConnInfoKeyResponse = @"response";
 
 - (NSMutableDictionary *)connectionInfoForConnection:(NSURLConnection *)connection {
   return (__bridge NSMutableDictionary *)CFDictionaryGetValue(_connectionInfoMap, (__bridge void *)connection);
+}
+
+- (void)launchRequest:(TXARequest *)request withCallback:(TXAClientCompletionCallback)callback {
+  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+  NSMutableDictionary *connectionInfo = [NSMutableDictionary dictionary];
+  [connectionInfo setValue:callback forKey:kConnInfoKeyCallback];
+  [connectionInfo setValue:[NSMutableData data] forKey:kConnInfoKeyData];
+  [connectionInfo setValue:request forKey:kConnInfoKeyRequest];
+  CFDictionaryAddValue(_connectionInfoMap, (__bridge void *)connection, (__bridge void *)connectionInfo);
+  [connection start];
 }
 
 @end

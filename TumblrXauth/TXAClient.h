@@ -19,4 +19,6 @@ typedef void(^TXAClientCompletionCallback)(NSURLResponse *response, NSData *data
 - (void)authenticateWithUsername:(NSString *)username
                         password:(NSString *)password
               completionCallback:(TXAClientSimpleCompletionCallback)completionCallback;
+- (void)retrieveUserInfoWithCompletionCallback:(TXAClientCompletionCallback)completionCallback;
+- (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption completionCallback:(TXAClientCompletionCallback)completionCallback;
 @end
