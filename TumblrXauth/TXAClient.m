@@ -29,6 +29,15 @@ static NSString *const kConnInfoKeyResponse = @"response";
 @synthesize accessToken = _accessToken;
 @synthesize tokenSecret = _tokenSecret;
 
++ (TXAClient *)sharedInstanceWithKey:(NSString *)key secret:(NSString *)secret {
+  static TXAClient *client;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    client = [[TXAClient alloc] initWithKey:key secret:secret];
+  });
+  return client;
+}
+
 - (id)init {
   return [self initWithKey:nil secret:nil];
 }
