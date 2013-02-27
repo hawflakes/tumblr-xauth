@@ -125,6 +125,9 @@
   [self setValue:[self generateAuthorizationHeaderValue] forHTTPHeaderField:@"Authorization"];
 
   NSMutableArray *params = [NSMutableArray arrayWithCapacity:[_userParams count]];
+  for (TXAParam *param in _xauthParams) {
+    [params addObject:[param formatForURL]];
+  }
   for (TXAParam *param in _userParams) {
     [params addObject:[param formatForURL]];
   }
@@ -165,9 +168,6 @@
 - (NSString *)generateAuthorizationHeaderValue {
   NSMutableArray *params = [[NSMutableArray alloc] init];
   for (TXAParam *param in _oauthParams) {
-    [params addObject:[param formatForAuthorizationHeader]];
-  }
-  for (TXAParam *param in _xauthParams) {
     [params addObject:[param formatForAuthorizationHeader]];
   }
   return [NSString stringWithFormat:@"OAuth %@", [params componentsJoinedByString:@", "]];
