@@ -24,6 +24,11 @@ static NSString *const kConnInfoKeyResponse = @"response";
 
 @implementation TXAClient
 
+@synthesize key = _key;
+@synthesize secret = _secret;
+@synthesize accessToken = _accessToken;
+@synthesize tokenSecret = _tokenSecret;
+
 - (id)init {
   return [self initWithKey:nil secret:nil];
 }
