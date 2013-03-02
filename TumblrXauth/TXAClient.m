@@ -16,6 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TXAError.h"
 #import "TXARequest.h"
 
 static NSString *const kTumblrAccessTokenUrl = @"https://www.tumblr.com/oauth/access_token";
@@ -37,6 +38,7 @@ static NSString *const kConnInfoKeyResponse = @"response";
 }
 - (NSMutableDictionary *)connectionInfoForConnection:(NSURLConnection *)connection;
 - (void)launchRequest:(TXARequest *)request withCallback:(TXAClientCompletionCallback)callback;
+- (NSHTTPURLResponse *)convertToHttpResponseFromResponse:(NSURLResponse *)response error:(NSError *)error callback:(TXAClientJsonCompletionCallback)callback statusCode:(NSInteger)statusCode;
 @end
 
 @implementation TXAClient
@@ -135,6 +137,22 @@ static NSString *const kConnInfoKeyResponse = @"response";
   [self launchRequest:request withCallback:completionCallback];
 }
 
+- (void)retrieveUserInfoWithJsonCompletionCallback:(TXAClientJsonCompletionCallback)jsonCompletionCallback {
+  [self retrieveUserInfoWithCompletionCallback:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSHTTPURLResponse *httpResponse = [self convertToHttpResponseFromResponse:response error:error callback:jsonCompletionCallback statusCode:200];
+    if (!httpResponse) {
+      return;
+    }
+    NSError *jsonError = nil;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+    if (jsonError) {
+      jsonCompletionCallback(nil, jsonError);
+      return;
+    }
+    jsonCompletionCallback(json, nil);
+  }];
+}
+
 - (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption completionCallback:(TXAClientCompletionCallback)completionCallback {
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kTumblrPostTemplateUrl, name]];
   TXARequest *request = [[TXARequest alloc] initWithURL:url key:_key secret:_secret accessToken:_accessToken tokenSecret:_tokenSecret];
@@ -149,6 +167,16 @@ static NSString *const kConnInfoKeyResponse = @"response";
   [request addParam:@"source" value:sourceUrl];
   [request sign];
   [self launchRequest:request withCallback:completionCallback];
+}
+
+- (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption jsonCompletionCallback:(TXAClientJsonCompletionCallback)jsonCompletionCallback {
+  [self postPhoto:sourceUrl toBlog:name withLink:link caption:caption completionCallback:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSHTTPURLResponse *httpResponse = [self convertToHttpResponseFromResponse:response error:error callback:jsonCompletionCallback statusCode:201];
+    if (!httpResponse) {
+      return;
+    }
+    jsonCompletionCallback(nil, nil);
+  }];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -200,6 +228,27 @@ static NSString *const kConnInfoKeyResponse = @"response";
   [connectionInfo setValue:request forKey:kConnInfoKeyRequest];
   CFDictionaryAddValue(_connectionInfoMap, (__bridge void *)connection, (__bridge void *)connectionInfo);
   [connection start];
+}
+
+- (NSHTTPURLResponse *)convertToHttpResponseFromResponse:(NSURLResponse *)response error:(NSError *)error callback:(TXAClientJsonCompletionCallback)callback statusCode:(NSInteger)statusCode {
+  if (error) {
+    callback(nil, error);
+    return nil;
+  }
+  if (![response isKindOfClass:[NSHTTPURLResponse class]]) {
+    callback(nil, [TXAError errorWithCode:kTXAErrorCodeNonHttpResponse userInfo:@{@"response": response}]);
+    return nil;
+  }
+  NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+  if ([httpResponse statusCode] == 401) {
+    callback(nil, [TXAError errorWithCode:kTXAErrorCodeAuthFailure userInfo:@{@"response": response}]);
+    return nil;
+  }
+  if ([httpResponse statusCode] != statusCode) {
+    callback(nil, [TXAError errorWithCode:kTXAErrorCodeBadStatusCode userInfo:@{@"response": response}]);
+    return nil;
+  }
+  return httpResponse;
 }
 
 @end

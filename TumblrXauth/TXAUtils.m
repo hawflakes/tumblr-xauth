@@ -12,8 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NSError+TXAError.h"
-#import "TXAClient.h"
-#import "TXAError.h"
-#import "TXARequest.h"
-#import "TXAParam.h"
+#import "TXAUtils.h"
+
+#import <Foundation/Foundation.h>
+
+NSBundle *TXAFrameworkBundle(void) {
+  static NSBundle *frameworkBundle = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSString *mainBundlePath = [[NSBundle mainBundle] resourcePath];
+    NSString *frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"TumblrXauth.bundle"];
+    frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+  });
+  return frameworkBundle;
+}

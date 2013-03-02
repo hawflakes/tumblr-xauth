@@ -14,6 +14,7 @@
 				72DD247716DC750E00150A75 /* ShellScript */,
 			);
 			dependencies = (
+				7217E08516E170B100C21441 /* PBXTargetDependency */,
 				72DD247616DC74D100150A75 /* PBXTargetDependency */,
 			);
 			name = Framework;
@@ -32,11 +33,26 @@
 		720C188616DD74BD000C285F /* TXAParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188416DD74BD000C285F /* TXAParam.m */; };
 		720C188A16DD8878000C285F /* NSData+TXABase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 720C188816DD8878000C285F /* NSData+TXABase64.h */; };
 		720C188B16DD8878000C285F /* NSData+TXABase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C188916DD8878000C285F /* NSData+TXABase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7217E06D16E1683300C21441 /* TXAError.h in Headers */ = {isa = PBXBuildFile; fileRef = 7217E06B16E1683300C21441 /* TXAError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7217E06E16E1683300C21441 /* TXAError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217E06C16E1683300C21441 /* TXAError.m */; };
+		7217E07116E169D800C21441 /* NSError+TXAError.h in Headers */ = {isa = PBXBuildFile; fileRef = 7217E06F16E169D800C21441 /* NSError+TXAError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7217E07216E169D800C21441 /* NSError+TXAError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217E07016E169D800C21441 /* NSError+TXAError.m */; };
+		7217E07916E1700800C21441 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7217E07816E1700800C21441 /* CoreFoundation.framework */; };
+		7217E08816E1731200C21441 /* TXAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7217E08716E1731200C21441 /* TXAUtils.m */; };
+		7217E08A16E1732B00C21441 /* TXAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7217E08916E1732A00C21441 /* TXAUtils.h */; };
+		7217E08D16E175EB00C21441 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7217E08F16E175EB00C21441 /* Errors.strings */; };
 		72DD246016DC6DAF00150A75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72DD245F16DC6DAF00150A75 /* Foundation.framework */; };
 		72DD247016DC73F800150A75 /* TumblrXauth.h in Headers */ = {isa = PBXBuildFile; fileRef = 72DD246416DC6DAF00150A75 /* TumblrXauth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7217E08416E170B100C21441 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72DD245416DC6DAF00150A75 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7217E07616E1700800C21441;
+			remoteInfo = TumblrXauthResources;
+		};
 		72DD247516DC74D100150A75 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 72DD245416DC6DAF00150A75 /* Project object */;
@@ -57,12 +73,30 @@
 		720C188416DD74BD000C285F /* TXAParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAParam.m; sourceTree = "<group>"; };
 		720C188816DD8878000C285F /* NSData+TXABase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+TXABase64.h"; sourceTree = "<group>"; };
 		720C188916DD8878000C285F /* NSData+TXABase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+TXABase64.m"; sourceTree = "<group>"; };
+		7217E06B16E1683300C21441 /* TXAError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXAError.h; sourceTree = "<group>"; };
+		7217E06C16E1683300C21441 /* TXAError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAError.m; sourceTree = "<group>"; };
+		7217E06F16E169D800C21441 /* NSError+TXAError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+TXAError.h"; sourceTree = "<group>"; };
+		7217E07016E169D800C21441 /* NSError+TXAError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+TXAError.m"; sourceTree = "<group>"; };
+		7217E07716E1700800C21441 /* TumblrXauth.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TumblrXauth.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		7217E07816E1700800C21441 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7217E07C16E1700800C21441 /* TumblrXauthResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TumblrXauthResources-Info.plist"; sourceTree = "<group>"; };
+		7217E08716E1731200C21441 /* TXAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXAUtils.m; sourceTree = "<group>"; };
+		7217E08916E1732A00C21441 /* TXAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXAUtils.h; sourceTree = "<group>"; };
+		7217E08E16E175EB00C21441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Errors.strings; sourceTree = "<group>"; };
 		72DD245C16DC6DAF00150A75 /* libTumblrXauth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTumblrXauth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DD245F16DC6DAF00150A75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72DD246416DC6DAF00150A75 /* TumblrXauth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TumblrXauth.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7217E07416E1700800C21441 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7217E07916E1700800C21441 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72DD245916DC6DAF00150A75 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,6 +111,8 @@
 		720C187616DD222A000C285F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7217E06F16E169D800C21441 /* NSError+TXAError.h */,
+				7217E07016E169D800C21441 /* NSError+TXAError.m */,
 				720C187716DD2255000C285F /* NSString+TXAURLEncoding.h */,
 				720C187816DD2255000C285F /* NSString+TXAURLEncoding.m */,
 			);
@@ -92,6 +128,15 @@
 			name = ThirdParty;
 			sourceTree = "<group>";
 		};
+		7217E08616E1717700C21441 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7217E08F16E175EB00C21441 /* Errors.strings */,
+				7217E07C16E1700800C21441 /* TumblrXauthResources-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		72DD245316DC6DAF00150A75 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				72DD245C16DC6DAF00150A75 /* libTumblrXauth.a */,
+				7217E07716E1700800C21441 /* TumblrXauth.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				72DD245F16DC6DAF00150A75 /* Foundation.framework */,
+				7217E07816E1700800C21441 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,14 +168,19 @@
 			isa = PBXGroup;
 			children = (
 				720C187616DD222A000C285F /* Categories */,
+				7217E08616E1717700C21441 /* Resources */,
 				720C188716DD885A000C285F /* ThirdParty */,
 				72DD246416DC6DAF00150A75 /* TumblrXauth.h */,
 				720C187B16DD5BFD000C285F /* TXAClient.h */,
 				720C187C16DD5BFD000C285F /* TXAClient.m */,
+				7217E06B16E1683300C21441 /* TXAError.h */,
+				7217E06C16E1683300C21441 /* TXAError.m */,
 				720C187F16DD632A000C285F /* TXARequest.h */,
 				720C188016DD632A000C285F /* TXARequest.m */,
 				720C188316DD74BD000C285F /* TXAParam.h */,
 				720C188416DD74BD000C285F /* TXAParam.m */,
+				7217E08916E1732A00C21441 /* TXAUtils.h */,
+				7217E08716E1731200C21441 /* TXAUtils.m */,
 			);
 			path = TumblrXauth;
 			sourceTree = "<group>";
@@ -146,12 +198,32 @@
 				720C188116DD632A000C285F /* TXARequest.h in Headers */,
 				720C188516DD74BD000C285F /* TXAParam.h in Headers */,
 				720C188A16DD8878000C285F /* NSData+TXABase64.h in Headers */,
+				7217E06D16E1683300C21441 /* TXAError.h in Headers */,
+				7217E07116E169D800C21441 /* NSError+TXAError.h in Headers */,
+				7217E08A16E1732B00C21441 /* TXAUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7217E07616E1700800C21441 /* TumblrXauthResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7217E08116E1700800C21441 /* Build configuration list for PBXNativeTarget "TumblrXauthResources" */;
+			buildPhases = (
+				7217E07316E1700800C21441 /* Sources */,
+				7217E07416E1700800C21441 /* Frameworks */,
+				7217E07516E1700800C21441 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TumblrXauthResources;
+			productName = TumblrXauthResources;
+			productReference = 7217E07716E1700800C21441 /* TumblrXauth.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		72DD245B16DC6DAF00150A75 /* TumblrXauth */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72DD246A16DC6DAF00150A75 /* Build configuration list for PBXNativeTarget "TumblrXauth" */;
@@ -184,6 +256,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 72DD245316DC6DAF00150A75;
 			productRefGroup = 72DD245D16DC6DAF00150A75 /* Products */;
@@ -192,9 +265,21 @@
 			targets = (
 				72DD245B16DC6DAF00150A75 /* TumblrXauth */,
 				72DD247116DC74C500150A75 /* Framework */,
+				7217E07616E1700800C21441 /* TumblrXauthResources */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7217E07516E1700800C21441 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7217E08D16E175EB00C21441 /* Errors.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		72DD246E16DC723300150A75 /* ShellScript */ = {
@@ -226,6 +311,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7217E07316E1700800C21441 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		72DD245816DC6DAF00150A75 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,12 +327,20 @@
 				720C188216DD632A000C285F /* TXARequest.m in Sources */,
 				720C188616DD74BD000C285F /* TXAParam.m in Sources */,
 				720C188B16DD8878000C285F /* NSData+TXABase64.m in Sources */,
+				7217E06E16E1683300C21441 /* TXAError.m in Sources */,
+				7217E07216E169D800C21441 /* NSError+TXAError.m in Sources */,
+				7217E08816E1731200C21441 /* TXAUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7217E08516E170B100C21441 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7217E07616E1700800C21441 /* TumblrXauthResources */;
+			targetProxy = 7217E08416E170B100C21441 /* PBXContainerItemProxy */;
+		};
 		72DD247616DC74D100150A75 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 72DD245B16DC6DAF00150A75 /* TumblrXauth */;
@@ -248,7 +348,43 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7217E08F16E175EB00C21441 /* Errors.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7217E08E16E175EB00C21441 /* en */,
+			);
+			name = Errors.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7217E08216E1700800C21441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "TumblrXauth/Resources/TumblrXauthResources-Info.plist";
+				PRODUCT_NAME = TumblrXauth;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		7217E08316E1700800C21441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "TumblrXauth/Resources/TumblrXauthResources-Info.plist";
+				PRODUCT_NAME = TumblrXauth;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		72DD246816DC6DAF00150A75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -352,6 +488,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7217E08116E1700800C21441 /* Build configuration list for PBXNativeTarget "TumblrXauthResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7217E08216E1700800C21441 /* Debug */,
+				7217E08316E1700800C21441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		72DD245716DC6DAF00150A75 /* Build configuration list for PBXProject "TumblrXauth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

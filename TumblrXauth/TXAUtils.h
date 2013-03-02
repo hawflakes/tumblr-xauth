@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NSError+TXAError.h"
-#import "TXAClient.h"
-#import "TXAError.h"
-#import "TXARequest.h"
-#import "TXAParam.h"
+#import <Foundation/Foundation.h>
+
+extern NSBundle *TXAFrameworkBundle(void);

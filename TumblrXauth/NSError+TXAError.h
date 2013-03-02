@@ -12,8 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NSError+TXAError.h"
-#import "TXAClient.h"
+#import <Foundation/Foundation.h>
+
 #import "TXAError.h"
-#import "TXARequest.h"
-#import "TXAParam.h"
+
+@interface NSError (TXAError)
+- (BOOL)isTXAError;
+- (BOOL)isTXAErrorWithCode:(TXAErrorCode)code;
+@end

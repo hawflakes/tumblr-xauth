@@ -16,6 +16,7 @@
 
 typedef void(^TXAClientSimpleCompletionCallback)(BOOL wasSuccessful);
 typedef void(^TXAClientCompletionCallback)(NSURLResponse *response, NSData *data, NSError *error);
+typedef void(^TXAClientJsonCompletionCallback)(NSDictionary *response, NSError *error);
 
 @interface TXAClient : NSObject
 
@@ -33,6 +34,10 @@ typedef void(^TXAClientCompletionCallback)(NSURLResponse *response, NSData *data
 - (void)authenticateWithUsername:(NSString *)username
                         password:(NSString *)password
               completionCallback:(TXAClientSimpleCompletionCallback)completionCallback;
+
 - (void)retrieveUserInfoWithCompletionCallback:(TXAClientCompletionCallback)completionCallback;
+- (void)retrieveUserInfoWithJsonCompletionCallback:(TXAClientJsonCompletionCallback)jsonCompletionCallback;
+
 - (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption completionCallback:(TXAClientCompletionCallback)completionCallback;
+- (void)postPhoto:(NSString *)sourceUrl toBlog:(NSString *)name withLink:(NSString *)link caption:(NSString *)caption jsonCompletionCallback:(TXAClientJsonCompletionCallback)jsonCompletionCallback;
 @end

@@ -12,8 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "NSError+TXAError.h"
-#import "TXAClient.h"
-#import "TXAError.h"
-#import "TXARequest.h"
-#import "TXAParam.h"
+#import <Foundation/Foundation.h>
+
+extern NSString *const kTXAErrorDomain;
+
+typedef enum {
+  kTXAErrorCodeAuthFailure,
+  kTXAErrorCodeBadStatusCode,
+  kTXAErrorCodeNonHttpResponse,
+} TXAErrorCode;
+
+@interface TXAError : NSError
+- (id)initWithCode:(TXAErrorCode)code;
+- (id)initWithCode:(TXAErrorCode)code userInfo:(NSDictionary *)userInfo;
++ (TXAError *)errorWithCode:(TXAErrorCode)code;
++ (TXAError *)errorWithCode:(TXAErrorCode)code userInfo:(NSDictionary *)userInfo;
+@end

@@ -13,7 +13,19 @@
 // limitations under the License.
 
 #import "NSError+TXAError.h"
-#import "TXAClient.h"
+
+#import <Foundation/Foundation.h>
+
 #import "TXAError.h"
-#import "TXARequest.h"
-#import "TXAParam.h"
+
+@implementation NSError (TXAError)
+
+- (BOOL)isTXAError {
+  return [self isKindOfClass:[TXAError class]] || [[self domain] isEqualToString:kTXAErrorDomain];
+}
+
+- (BOOL)isTXAErrorWithCode:(TXAErrorCode)code {
+  return [self isTXAError] && [self code] == code;
+}
+
+@end
